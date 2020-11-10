@@ -7,9 +7,10 @@ const [itemValue , setItemValue]=useState("");
 const [itemsArray , setItems]=useState([]);
 
 function handleClick(){
-  setItems ((preValues)=>{
-    return [...itemsArray, itemValue ];
+setItems ((preValues)=>{
+return [...itemsArray, itemValue ];
   });
+setItemValue("");
 
 }
 
