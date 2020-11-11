@@ -1,8 +1,7 @@
 import React, { useState } from "react";
+import TodoItem from "./ToDoItem";
 
 function App() {
-
-
 const [itemValue , setItemValue]=useState("");
 const [itemsArray , setItems]=useState([]);
 
@@ -11,12 +10,21 @@ setItems ((preValues)=>{
 return [...itemsArray, itemValue ];
   });
 setItemValue("");
-
 }
 
 function handleChange (event){
 const newItemValue= event.target.value;
 setItemValue(newItemValue);
+}
+
+function deleteItem(id){
+  setItems (preValues=>{
+    return preValues.filter(
+      (item , index)=>{
+        return index !==id;
+      });
+
+  });
 }
 
   return (
@@ -33,7 +41,12 @@ setItemValue(newItemValue);
       <div>
       
         <ul>
-        {itemsArray.map(todoItem => <li> {todoItem}</li> )}
+        {itemsArray.map((todoItem,index) => 
+          <TodoItem  
+          key={index}
+          id ={index}
+          text={todoItem}
+          isChecked={deleteItem} /> )}
           
         </ul>
         
